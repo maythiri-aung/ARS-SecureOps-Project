@@ -1,5 +1,5 @@
 resource "hcp_hvn" "vault_hvn" {
-  hvn_id         = "ars_hvn"
+  hvn_id         = "ars_vault_hvn"
   cloud_provider = "aws"
   region         = "ap-southeast-1"
   cidr_block     = "172.25.16.0/20"
