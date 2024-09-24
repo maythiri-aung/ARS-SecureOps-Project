@@ -1,4 +1,4 @@
-resource "aws_iam_user" "vault_admin" {
+resource "aws_iam_user" "vault_admin_user" {
   name = var.vault_admin
   path = "/"
 
@@ -7,11 +7,11 @@ resource "aws_iam_user" "vault_admin" {
   }
 }
 
-resource "aws_iam_access_key" "vault_admin" {
-  user = aws_iam_user.vault_admin.name
+resource "aws_iam_access_key" "vault_admin_key" {
+  user = aws_iam_user.vault_admin_user.name
 }
 
-data "aws_iam_policy_document" "vault_admin" {
+data "aws_iam_policy_document" "vault_admin_policy" {
   statement {
     effect    = "Allow"
     actions   = [
@@ -37,8 +37,8 @@ data "aws_iam_policy_document" "vault_admin" {
   }
 }
 
-resource "aws_iam_user_policy" "vault_admin" {
+resource "aws_iam_user_policy" "vault_admin_policy" {
   name   = "vault-admin-policy"
-  user   = aws_iam_user.vault_admin.name
-  policy = data.aws_iam_policy_document.vault_admin.json
+  user   = aws_iam_user.vault_admin_user.name
+  policy = data.aws_iam_policy_document.vault_admin_policy.json
 }
