@@ -5,7 +5,7 @@ resource "vault_jwt_auth_backend" "tfc_jwt" {
     bound_issuer        = "https://app.terraform.io/"
 }
 
-resource "vault_policy" "vault_policy" {
+resource "vault_policy" "admin_policy" {
   name = "admin-policy"
 
   policy = <<EOT
@@ -63,7 +63,7 @@ EOT
 resource "vault_jwt_auth_backend_role" "admin-role" {
   backend = vault_jwt_auth_backend.tfc_jwt.path
   role_name = "admin-role"
-  token_policies = [vault_policy.tfc_dpc_aws_secret_policy.name]
+  token_policies = [vault_policy.admin_policy.name]
   bound_audiences = ["valut.workload.indentity"]
   bound_claims_type = "glob"
   bound_claims = {
