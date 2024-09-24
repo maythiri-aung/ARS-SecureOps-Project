@@ -24,5 +24,5 @@ resource "hcp_vault_cluster" "vault_cluster" {
   cluster_id = var.vault_cluster_id
   hvn_id     = hcp_hvn.vault_hvn.hvn_id
   tier       = var.tier_type
-  public_endpoint = true
+  public_endpoint = true #to connect terraform and HCP
 }
