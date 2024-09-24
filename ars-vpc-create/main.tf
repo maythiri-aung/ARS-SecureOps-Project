@@ -10,11 +10,11 @@ resource "aws_subnet" "ars_public_subnet" {
   count = length(var.ars_public_cidr_block)
   vpc_id     = aws_vpc.ars_vpc.id
   cidr_block = var.ars_public_cidr_block[count.index]
-  availability_zone = data.aws_availability_zones.available.name[count.index]
+  availability_zone = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "ars-public-subnet-${element(data.aws_availability_zones.available.name,count.index)}"
+    Name = "ars-public-subnet-${element(data.aws_availability_zones.available.names,count.index)}"
   }
 }
 
