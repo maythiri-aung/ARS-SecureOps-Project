@@ -63,7 +63,7 @@ EOT
 
 
 
-resource "vault_jwt_auth_backend_role" "jwt_admin_role" {
+resource "vault_jwt_auth_backend_role" "jwt_auth_role" {
   backend        = vault_jwt_auth_backend.jwt_auth.path
   role_name      = "admin-role"
   token_policies = [vault_policy.admin_policy.name]
