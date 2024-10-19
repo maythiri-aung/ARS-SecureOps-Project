@@ -14,7 +14,7 @@ resource "vault_aws_secret_backend_role" "role" {
   policy_arns = ["arn:aws:iam::aws:policy/AdministratorAccess"]
 }
 
-data "time_sleep" "wait_before_fetching_creds" {
+resource "time_sleep" "wait_before_fetching_creds" {
   depends_on = [vault_aws_secret_backend_role.role]
   create_duration    = "10s"
 }
