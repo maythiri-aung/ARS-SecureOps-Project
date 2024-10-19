@@ -14,6 +14,11 @@ resource "vault_aws_secret_backend_role" "role" {
   policy_arns = ["arn:aws:iam::aws:policy/AdministratorAccess"]
 }
 
+data "time_sleep" "wait_before_fetching_creds" {
+  depends_on = [vault_aws_secret_backend_role.role]
+  create_duration    = "10s"
+}
+
 # generally, these blocks would be in a different module
 data "vault_aws_access_credentials" "creds" {
   backend = vault_aws_secret_backend.aws.path
